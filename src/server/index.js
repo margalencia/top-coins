@@ -1,9 +1,9 @@
-const path = require('path');
-const Koa = require('koa');
-const Router = require('koa-router');
-const axios = require('axios');
+const path = require("path");
+const Koa = require("koa");
+const Router = require("koa-router");
+const axios = require("axios");
 
-require('dotenv').config({ path: path.join(__dirname, '../../.env') });
+require("dotenv").config({ path: path.join(__dirname, "../../.env") });
 
 const app = new Koa();
 const router = new Router();
@@ -18,19 +18,18 @@ app.use(async (ctx, next) => {
   }
 });
 
-const config = {
-  params: {
-    start: 1,
-    limit: 5
-  },
-  headers: {
-    'X-CMC_PRO_API_KEY': process.env.API_KEY
-  }
-};
-
-router.get('/api/coins', async (ctx) => {
+router.get("/api/coins", async ctx => {
   const result = await axios.get(
-    'https://sandbox-api.coinmarketcap.com/v1/cryptocurrency/listings/latest', config
+    "https://sandbox-api.coinmarketcap.com/v1/cryptocurrency/listings/latest",
+    {
+      params: {
+        start: 1,
+        limit: ctx.query.limit
+      },
+      headers: {
+        "X-CMC_PRO_API_KEY": process.env.API_KEY
+      }
+    }
   );
 
   ctx.body = result.data;
