@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { Router, Link } from "@reach/router";
 import axios from "axios";
 
 import Select from "@material-ui/core/Select";
 
 import Table from "./components/table";
+import Chart from "./components/chart"
 
 const App = () => {
   const [coins, setCoins] = useState([]);
@@ -26,6 +28,7 @@ const App = () => {
 
   return (
     <>
+      <h1>Welcome to Top Coins App</h1>
       <Select
         native
         value={limit}
@@ -35,7 +38,14 @@ const App = () => {
         <option value={50}>50</option>
         <option value={100}>all</option>
       </Select>
-      <Table coins={coins} />
+      <nav>
+        <Link to="/">Market overview</Link> |{" "}
+        <Link to="/liquidity">Liquidity analysis</Link>
+      </nav>
+      <Router>
+        <Table path="/" coins={coins} />
+        <Chart path="/liquidity" coins={coins} />
+      </Router>
     </>
   );
 };
