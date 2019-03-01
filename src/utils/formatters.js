@@ -7,6 +7,5 @@ export const formatCurrency = value => createFormatter({
 
 export const formatPercent = value => createFormatter({
   style: "percent",
-  minimumFractionDigits: 2,
   maximumFractionDigits: 2
 }).format(value);

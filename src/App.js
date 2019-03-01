@@ -19,7 +19,6 @@ const App = () => {
     });
 
     setCoins(result.data.data);
-    console.log(result.data.data);
   }
 
   useEffect(() => {
