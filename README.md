@@ -1,68 +1,29 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+#Top Coins App
+The solution for [frontend-engineer-challenge-top-coins](https://github.com/WATTx/code-challenges/blob/master/frontend-engineer-challenge-top-coins.md) task
 
-## Available Scripts
+##How to run the solution
+1. Get you API Key for https://sandbox.coinmarketcap.com/ or use mine, I've added `.env` file to repo for simplicity. 
+2. In `.env` file (it's in the project root) change `API_KEY` and `APP_PORT` (the port on what the proxy server will start).
+3. Run `npm i` and `npm start` in the project root.
+4. Go to server's folder `cd src/sever` and run `npm i` and `npm start`.
+5. Go to `http://localhost:3000` to see the application.
 
-In the project directory, you can run:
+##The problem and the solution
+The task is to create a SPA for a simple analysis of crypto assets. 
+The app should fetch all the required data from the [coinmarketcap.com](https://coinmarketcap.com/api/).
+As this service doesn't allow making HTTP requests on the client side, I've created a proxy server using Koa framework.
 
-### `npm start`
+On the client-side I've used React and it's new feature React Hooks. For the project set up I've used Create React App.
+As a component library I've choosed Material UI and also styled-components for styling.
+For the chart I decided to use Recharts library as I've already had some experience with it and it solves the task pretty fine.
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+I'm not sure that I understood correctly what does absolute price change (24h) mean. 
+I calculate it this way: take an absolute of the (price * percent_change) / (100 + percent_change).
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+###What would I do next
+1. More test covering;
+2. Page layout with Material UI Grid system (didn't have enough time to learn how to use it), 
+so currently the UI is not very responsive;
+3. Error handling on the client-side using `componentDidCatch`;
+4. Show loader while fetching the data from API, because sometimes it takes several seconds;
+5. Or add pagination or virtual scroll to the table.
