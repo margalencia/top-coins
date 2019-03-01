@@ -1,6 +1,7 @@
 import React from "react";
 import {
-  CartesianGrid, ResponsiveContainer,
+  CartesianGrid,
+  ResponsiveContainer,
   Scatter,
   ScatterChart,
   Tooltip,
@@ -9,6 +10,7 @@ import {
   ZAxis
 } from "recharts";
 import styled from "styled-components";
+import { Helmet } from "react-helmet";
 
 import { formatCurrency } from "./../utils/formatters";
 
@@ -51,30 +53,38 @@ export default ({ coins }) => {
   };
 
   return (
-    <ResponsiveContainer width="100%" height={400}>
-      <ScatterChart height={400} margin={{ top: 20, right: 20, bottom: 20, left: 120 }}>
-        <CartesianGrid strokeDasharray="3 3" />
-        <XAxis
-          dataKey="market_cap"
-          name="Market Capitalization"
-          tickFormatter={formatCurrency}
-        />
-        <YAxis
-          dataKey="volume_24h"
-          name="Volume (24h)"
-          tickFormatter={formatCurrency}
-        />
-        <ZAxis
-          dataKey="price_change"
-          range={[100, 1000]}
-          name="Absolute price change (24h)"
-        />
-        <Tooltip
-          cursor={{ strokeDasharray: "3 3" }}
-          content={<CustomTooltip />}
-        />
-        <Scatter name="Coin" data={data} fill="#8884d8" />
-      </ScatterChart>
-    </ResponsiveContainer>
+    <>
+      <Helmet>
+        <title>Liquidity analysis</title>
+      </Helmet>
+      <ResponsiveContainer width="100%" height={400}>
+        <ScatterChart
+          height={400}
+          margin={{ top: 20, right: 20, bottom: 20, left: 120 }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis
+            dataKey="market_cap"
+            name="Market Capitalization"
+            tickFormatter={formatCurrency}
+          />
+          <YAxis
+            dataKey="volume_24h"
+            name="Volume (24h)"
+            tickFormatter={formatCurrency}
+          />
+          <ZAxis
+            dataKey="price_change"
+            range={[100, 1000]}
+            name="Absolute price change (24h)"
+          />
+          <Tooltip
+            cursor={{ strokeDasharray: "3 3" }}
+            content={<CustomTooltip />}
+          />
+          <Scatter name="Coin" data={data} fill="#8884d8" />
+        </ScatterChart>
+      </ResponsiveContainer>
+    </>
   );
 };
