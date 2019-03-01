@@ -1,14 +1,14 @@
-#Top Coins App
+# Top Coins App
 The solution for [frontend-engineer-challenge-top-coins](https://github.com/WATTx/code-challenges/blob/master/frontend-engineer-challenge-top-coins.md) task
 
-##How to run the solution
+## How to run the solution
 1. Get you API Key for https://sandbox.coinmarketcap.com/ or use mine, I've added `.env` file to repo for simplicity. 
 2. In `.env` file (it's in the project root) change `API_KEY` and `APP_PORT` (the port on what the proxy server will start).
 3. Run `npm i` and `npm start` in the project root.
 4. Go to server's folder `cd src/sever` and run `npm i` and `npm start`.
 5. Go to `http://localhost:3000` to see the application.
 
-##The problem and the solution
+## The problem and the solution
 The task is to create a SPA for a simple analysis of crypto assets. 
 The app should fetch all the required data from the [coinmarketcap.com](https://coinmarketcap.com/api/).
 As this service doesn't allow making HTTP requests on the client side, I've created a proxy server using Koa framework.
@@ -20,7 +20,7 @@ For the chart I decided to use Recharts library as I've already had some experie
 I'm not sure that I understood correctly what does absolute price change (24h) mean. 
 I calculate it this way: take an absolute of the (price * percent_change) / (100 + percent_change).
 
-###What would I do next
+### What would I do next
 1. More test covering;
 2. Page layout with Material UI Grid system (didn't have enough time to learn how to use it), 
 so currently the UI is not very responsive;
