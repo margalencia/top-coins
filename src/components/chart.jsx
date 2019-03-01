@@ -26,12 +26,13 @@ const TooltipBody = styled.div`
 `;
 
 export default ({ coins }) => {
-  const data = coins.map(coin => ({
-    name: coin.name,
-    market_cap: coin.quote.USD.market_cap,
-    volume_24h: coin.quote.USD.volume_24h,
+  const data = coins.map(({ name, quote }) => ({
+    name,
+    market_cap: quote.USD.market_cap,
+    volume_24h: quote.USD.volume_24h,
     price_change: Math.abs(
-      coin.quote.USD.price * coin.quote.USD.percent_change_24h
+      (quote.USD.price * quote.USD.percent_change_24h) /
+        (100 + quote.USD.percent_change_24h)
     )
   }));
 
